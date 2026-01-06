@@ -1,0 +1,302 @@
+import os
+import requests
+from zipfile import ZipFile
+
+# Folder structure
+folder_name = "gramshhudh"
+subfolders = ["css", "images"]
+html_files = {
+    "index.html": """<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GramShhudh - Organic Products</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header>
+    <div class="container">
+        <h1>GramShhudh</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="products.html">Products</a>
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="container">
+        <h2>Pure & Organic Products from Bhubaneswar</h2>
+        <p>Honey, Turmeric, Ragi, Palua, Rice & more!</p>
+        <a href="products.html" class="btn">Explore Products</a>
+    </div>
+</section>
+
+<section class="featured-products container">
+    <h2>Our Top Products</h2>
+    <div class="products-grid">
+        <div class="product">
+            <img src="images/honey.jpg" alt="Honey">
+            <h3>Honey</h3>
+            <a href="products.html#honey" class="btn-small">View</a>
+        </div>
+        <div class="product">
+            <img src="images/turmeric.jpg" alt="Turmeric">
+            <h3>Turmeric</h3>
+            <a href="products.html#turmeric" class="btn-small">View</a>
+        </div>
+        <div class="product">
+            <img src="images/ragi.jpg" alt="Ragi">
+            <h3>Ragi</h3>
+            <a href="products.html#ragi" class="btn-small">View</a>
+        </div>
+        <div class="product">
+            <img src="images/palua.jpg" alt="Palua">
+            <h3>Palua</h3>
+            <a href="products.html#palua" class="btn-small">View</a>
+        </div>
+        <div class="product">
+            <img src="images/rice.jpg" alt="Rice">
+            <h3>Rice</h3>
+            <a href="products.html#rice" class="btn-small">View</a>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2026 GramShhudh. All rights reserved.</p>
+    </div>
+</footer>
+</body>
+</html>
+""",
+    "products.html": """<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Products - GramShhudh</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header>
+    <div class="container">
+        <h1>GramShhudh</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="products.html">Products</a>
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </div>
+</header>
+
+<main class="container">
+    <h2>Our Organic Products</h2>
+
+    <div class="product-details" id="honey">
+        <img src="images/honey.jpg" alt="Honey">
+        <div>
+            <h3>Honey</h3>
+            <p>Pure honey directly from Bhubaneswar hives.</p>
+            <a href="contact.html" class="btn-small">Order Now</a>
+        </div>
+    </div>
+
+    <div class="product-details" id="turmeric">
+        <img src="images/turmeric.jpg" alt="Turmeric">
+        <div>
+            <h3>Turmeric</h3>
+            <p>Organic turmeric powder, rich in curcumin.</p>
+            <a href="contact.html" class="btn-small">Order Now</a>
+        </div>
+    </div>
+
+    <div class="product-details" id="ragi">
+        <img src="images/ragi.jpg" alt="Ragi">
+        <div>
+            <h3>Ragi</h3>
+            <p>Healthy wholegrain ragi for nutritious meals.</p>
+            <a href="contact.html" class="btn-small">Order Now</a>
+        </div>
+    </div>
+
+    <div class="product-details" id="palua">
+        <img src="images/palua.jpg" alt="Palua">
+        <div>
+            <h3>Palua</h3>
+            <p>Fresh palua grains sourced organically.</p>
+            <a href="contact.html" class="btn-small">Order Now</a>
+        </div>
+    </div>
+
+    <div class="product-details" id="rice">
+        <img src="images/rice.jpg" alt="Rice">
+        <div>
+            <h3>Rice</h3>
+            <p>Premium organic rice for daily consumption.</p>
+            <a href="contact.html" class="btn-small">Order Now</a>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2026 GramShhudh. All rights reserved.</p>
+    </div>
+</footer>
+</body>
+</html>
+""",
+    "about.html": """<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us - GramShhudh</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header>
+    <div class="container">
+        <h1>GramShhudh</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="products.html">Products</a>
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </div>
+</header>
+
+<main class="container">
+<h2>About GramShhudh</h2>
+<p>GramShhudh is dedicated to providing pure, organic products from Bhubaneswar. Our mission is to deliver healthy food items directly from local farms to your home.</p>
+</main>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2026 GramShhudh. All rights reserved.</p>
+    </div>
+</footer>
+</body>
+</html>
+""",
+    "contact.html": """<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact - GramShhudh</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header>
+    <div class="container">
+        <h1>GramShhudh</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="products.html">Products</a>
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </div>
+</header>
+
+<main class="container">
+<h2>Contact Us</h2>
+<p>Email: <a href="mailto:gramshhudh@gmail.com">gramshhudh@gmail.com</a></p>
+<p>Phone: +91-XXXXXXXXXX</p>
+<p>Address: Bhubaneswar, Odisha, India</p>
+</main>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2026 GramShhudh. All rights reserved.</p>
+    </div>
+</footer>
+</body>
+</html>
+"""
+}
+
+# CSS
+css_content = """body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+}
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 1rem 0;
+    text-align: center;
+}
+header nav a {
+    color: white;
+    margin: 0 1rem;
+    text-decoration: none;
+    font-weight: bold;
+}
+.hero {
+    text-align: center;
+    padding: 2rem 1rem;
+    background-color: #f4f4f4;
+}
+.hero h2 { font-size: 2rem; }
+.btn { display: inline-block; margin-top: 1rem; padding: 0.6rem 1.2rem; background-color: #4CAF50; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; }
+.products-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; padding: 2rem 0; }
+.product { border: 1px solid #ccc; padding: 1rem; width: 200px; text-align: center; border-radius: 5px; }
+.btn-small { display: inline-block; margin-top: 0.5rem; padding: 0.4rem 0.8rem; background-color: #4CAF50; color: white; text-decoration: none; border-radius: 5px; font-size: 0.9rem; }
+.product-details { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem; border-bottom: 1px solid #ccc; padding-bottom: 1rem; }
+.product-details img { width: 250px; border-radius: 5px; }
+.product-details div { max-width: 600px; }
+footer { text-align: center; background-color: #333; color: white; padding: 1rem 0; }"""
+
+# Placeholder images URLs
+images = {
+    "honey.jpg": "https://via.placeholder.com/250x200?text=Honey",
+    "turmeric.jpg": "https://via.placeholder.com/250x200?text=Turmeric",
+    "ragi.jpg": "https://via.placeholder.com/250x200?text=Ragi",
+    "palua.jpg": "https://via.placeholder.com/250x200?text=Palua",
+    "rice.jpg": "https://via.placeholder.com/250x200?text=Rice"
+}
+
+# Create folder structure
+os.makedirs(folder_name, exist_ok=True)
+for sub in subfolders:
+    os.makedirs(os.path.join(folder_name, sub), exist_ok=True)
+
+# Create HTML files
+for filename, content in html_files.items():
+    with open(os.path.join(folder_name, filename), "w", encoding="utf-8") as f:
+        f.write(content)
+
+# Create CSS
+with open(os.path.join(folder_name, "css", "style.css"), "w", encoding="utf-8") as f:
+    f.write(css_content)
+
+# Download placeholder images
+for name, url in images.items():
+    img_data = requests.get(url).content
+    with open(os.path.join(folder_name, "images", name), "wb") as f:
+        f.write(img_data)
+
+# Create zip
+zipf = ZipFile(f"{folder_name}.zip", "w")
+for root, dirs, files in os.walk(folder_name):
+    for file in files:
+        zipf.write(os.path.join(root, file), os.path.relpath(os.path.join(root, file), folder_name))
+zipf.close()
+
+print(f"Created {folder_name}.zip successfully!")
