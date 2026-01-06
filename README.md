@@ -146,7 +146,7 @@
     <div class="product-box">
       <h3>Raw Forest Honey – 500g</h3>
       <p>Best for families and regular users.</p>
-      <p><strong>Price:</strong> ₹400 – ₹450</p>
+      <p><strong>Price:</strong> ₹800 – ₹1500</p>
     </div>
   </div>
 </section>
