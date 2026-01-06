@@ -141,7 +141,7 @@
     <div class="product-box">
       <h3>Raw Forest Honey – 250g</h3>
       <p>Seasonal, raw honey with natural aroma and taste.</p>
-      <p><strong>Price:</strong> ₹220 – ₹250</p>
+      <p><strong>Price:</strong> ₹450 – ₹800</p>
     </div>
     <div class="product-box">
       <h3>Raw Forest Honey – 500g</h3>
